@@ -11,9 +11,9 @@ public class LargestPalindrome {
 
 	public LargestPalindrome() {
 		int p = 0;
-		IntStream.rangeClosed(100, 999).forEachOrdered(
-				i -> IntStream.rangeClosed(i, 999).forEachOrdered(
-				j -> largestPalindrome = i*j > p && isPalindrome(i*j) ? (i + " *\t" + j + " =\t" + i*j) : largestPalindrome));
+		IntStream.rangeClosed(100, 999).forEachOrdered(i -> 
+			IntStream.rangeClosed(i, 999).forEachOrdered(j -> 
+			largestPalindrome = i*j > p && isPalindrome(i*j) ? (i + " *\t" + j + " =\t" + i*j) : largestPalindrome));
 		
 		System.out.println(largestPalindrome);
 	}
@@ -25,10 +25,10 @@ public class LargestPalindrome {
 	}
 
 	private boolean isPalindrome(char[] digits, int i, int j) {
-		if (i == j || i > j) {
+		if (i >= j) {
 			return true;
 		}
-		return digits[i] == digits[j] ? isPalindrome(digits, ++i, --j) : false;
+		return digits[i] == digits[j] && isPalindrome(digits, ++i, --j);
 	}
 
 }
